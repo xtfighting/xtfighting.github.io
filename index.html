@@ -1,1 +1,113 @@
-hahahhhaa
+<!DOCTYPE html>
+<html>
+ <head> 
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>求回归直线方程</title> 
+ </head>
+<style type="text/css">
+*{
+  width:800px;
+  margin:auto;
+  margin-top:30px;
+}
+body{
+  width:400px；
+}
+form{
+  align:center;
+}
+form input{
+  margin:5px;
+  padding-left:4px;
+  min-width:600px;
+  min-height:30px;
+  font-size:18px;
+}
+form input:hover{
+  background-color:#fffff3;
+}
+table tr td{
+  min-width:200px;
+}
+button{
+  min-width:800px;
+  width:100%;
+  min-height:30px;
+  margin:5px;
+  margin-bottom:10px;
+}
+button:hover{
+  background-color:#999;
+}
+</style> 
+ <body> 
+  <h1 align='center'>求回归直线方程</h1>
+  <form> 
+   x的序列：<input id="content" type="text" value="" /> <br/>
+   y的序列：<input id="yz" type="text" value="" /> <br/>
+   <button id="submit" onclick="return checkForm()">提交</button> 
+  </form> 
+  <div id="time">
+  <table border='1' cellspacing="0" cellpadding='5px' border-color='#3f3'>
+<tr align='center'><td>x的平均值</td><td id='a'></td></tr>
+<tr align='center'><td>y的平均值</td><td id='b'></td></tr>
+<tr align='center'><td>x的方差</td><td id='c'></td></tr>
+<tr align='center'><td>y的方差</td><td id='d'></td></tr>
+<tr align='center'><td>回归直线方程</td><td id='e'></td></tr>
+</table>
+  </div>  
+  <script>
+        function checkForm(){
+        var content = document.getElementById('content').value;
+	    var x_arr = content.split(/[ |,]/);
+		var y = document.getElementById('yz').value;
+	    var y_arr = y.split(/[ |,]/);
+		var x_ave = ave(x_arr);
+		var y_ave = ave(y_arr);
+		var s1 = 0;
+		var s2 = 0;
+		for(var i=x_arr.length-1;i>=0;i--){
+		  s1 += parseInt(x_arr[i])*parseInt(y_arr[i]);
+		  s2 += parseInt(x_arr[i])*parseInt(x_arr[i]);
+		}
+		s1 -= x_arr.length*x_ave*y_ave;
+		s2 -= x_arr.length*x_ave*x_ave;
+		var bjian = s1/s2;
+		var ajian = y_ave - bjian*x_ave;
+		document.getElementById('a').innerHTML = x_ave;
+		document.getElementById('b').innerHTML = y_ave;
+		document.getElementById('c').innerHTML = fangcha(x_arr);
+		document.getElementById('d').innerHTML = fangcha(y_arr);
+		if(parseFloat(ajian)<0){
+		    document.getElementById('e').innerHTML = "y="+bjian+"x"+ajian;
+		}else{
+		    document.getElementById('e').innerHTML = "y="+bjian+"x+"+ajian;
+		}
+	    return false;
+	};
+	
+	function sum(arr) {
+		var s = 0;
+		for (var i=arr.length-1; i>=0; i--) {
+		       	s += parseInt(arr[i]);
+	       	}
+	       	return s;
+	}
+        function ave(arr) {
+	       	return parseFloat(sum(arr)/arr.length);
+	}
+        function fangcha(arr){
+		var s = 0;
+		var l = arr.length;
+		var av = parseInt(ave(arr));
+		for (var i=arr.length-1; i>=0; i--) {
+		       	s += (parseInt(arr[i])-av)*(parseInt(arr[i])-av);
+	       	}
+	       	return s/l;
+	}
+        function biaozhuncha(arr){
+		return Math.sqrt(fangcha(arr));
+	}	
+	</script>  
+ </body>
+</html>
