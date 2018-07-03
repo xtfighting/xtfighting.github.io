@@ -6,35 +6,37 @@
  </head>
 <style type="text/css">
 *{
-  width:800px;
   margin:auto;
   margin-top:30px;
 }
 body{
-  width:400px；
+  width:90%;
+  align:center;
 }
 form{
+  width:100%;
   align:center;
 }
 form input{
   margin:5px;
   padding-left:4px;
-  min-width:600px;
-  min-height:30px;
+  width:100%;
   font-size:18px;
 }
 form input:hover{
   background-color:#fffff3;
 }
+table{
+  width:100%;
+  table-layout: fixed;
+}
 table tr td{
-  min-width:200px;
+  
 }
 button{
-  min-width:800px;
   width:100%;
-  min-height:30px;
-  margin:5px;
-  margin-bottom:10px;
+  padding:5px;
+   font-size:18px;
 }
 button:hover{
   background-color:#999;
@@ -43,17 +45,17 @@ button:hover{
  <body> 
   <h1 align='center'>求回归直线方程</h1>
   <form> 
-   x的序列：<input id="content" type="text" value="" /> <br/>
-   y的序列：<input id="yz" type="text" value="" /> <br/>
+   x的序列（用,隔开）：<input id="content" type="text" value="" /> <br/>
+   y的序列（用,隔开）：<input id="yz" type="text" value="" /> <br/>
    <button id="submit" onclick="return checkForm()">提交</button> 
   </form> 
   <div id="time">
   <table border='1' cellspacing="0" cellpadding='5px' border-color='#3f3'>
-<tr align='center'><td>x的平均值</td><td id='a'></td></tr>
-<tr align='center'><td>y的平均值</td><td id='b'></td></tr>
-<tr align='center'><td>x的方差</td><td id='c'></td></tr>
-<tr align='center'><td>y的方差</td><td id='d'></td></tr>
-<tr align='center'><td>回归直线方程</td><td id='e'></td></tr>
+<tr><td align='center'>x的平均值</td><td id='a' align='center'></td></tr>
+<tr><td  align='center'>y的平均值</td><td id='b' align='center'></td></tr>
+<tr><td  align='center'>x的方差</td><td id='c' align='center'></td></tr>
+<tr><td  align='center'>y的方差</td><td id='d' align='center'></td></tr>
+<tr><td align='center'>回归直线方程</td><td id='e' align='center'></td></tr>
 </table>
   </div>  
   <script>
